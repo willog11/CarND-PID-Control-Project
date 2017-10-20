@@ -52,6 +52,7 @@ private:
 	void UpdateTau(int index, double value);
 
 	double best_error;
+	double total_error;
 	int current_state;
 };
 

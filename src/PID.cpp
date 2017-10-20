@@ -22,6 +22,7 @@ void PID::Init(double Kp, double Ki, double Kd) {
 	d_error = 0;
 
 	best_error = std::numeric_limits<double>::max();
+	total_error = 0.0;
 	current_state = 0;
 }
 
@@ -40,7 +41,7 @@ double PID::TotalError() {
 
 void PID::Twiddle(double cte, double tol) {
 	double dp[3] = { 1.0, 1.0, 1.0 };
-	double error = pow(cte, 2);
+	total_error += pow(cte, 2);
 
 	if (SumArray(dp) > tol)
 	{
@@ -53,9 +54,9 @@ void PID::Twiddle(double cte, double tol) {
 					current_state = 1;
 					break;
 				case 1:
-					if (error < best_error)
+					if (total_error < best_error)
 					{
-						best_error = error;
+						best_error = total_error;
 						dp[i] *= 1.1;
 						current_state = 0;
 						break;
@@ -69,9 +70,9 @@ void PID::Twiddle(double cte, double tol) {
 					}
 				case 2:
 
-						if (error < best_error)
+						if (total_error < best_error)
 						{
-							best_error = error;
+							best_error = total_error;
 							dp[i] *= 1.1;
 						}
 						else
