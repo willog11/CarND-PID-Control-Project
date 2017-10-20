@@ -63,6 +63,11 @@ int main()
 		  pid.UpdateError(cte);
 		  steer_value = pid.TotalError();
 
+		  if (steer_value < -1)
+			  steer_value = -1;
+		  if (steer_value > 1)
+			  steer_value = 1;
+
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
 
           json msgJson;
