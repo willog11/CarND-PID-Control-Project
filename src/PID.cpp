@@ -32,7 +32,7 @@ void PID::UpdateError(double cte) {
 	i_error += cte;
 	p_error = cte;
 
-	Twiddle(cte);
+	//Twiddle(cte);
 }
 
 double PID::TotalError() {
