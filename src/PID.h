@@ -17,10 +17,6 @@ public:
 	double Ki;
 	double Kd;
 
-	double p_error;
-	double i_error;
-	double d_error;
-
 	/*
 	* Constructor
 	*/
