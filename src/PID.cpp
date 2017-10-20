@@ -85,7 +85,6 @@ void PID::Twiddle(double cte, double tol) {
 					break;
 
 			}
-
 		}
 	}
 
