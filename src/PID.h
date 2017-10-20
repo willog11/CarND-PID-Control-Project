@@ -49,7 +49,7 @@ public:
 
 private:
 	double SumArray(double* p);
-	void PID::UpdateTau(int index, double value);
+	void UpdateTau(int index, double value);
 
 	double best_error;
 	int current_state;
