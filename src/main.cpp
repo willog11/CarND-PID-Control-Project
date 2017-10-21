@@ -33,7 +33,7 @@ int main()
   uWS::Hub h;
 
   PID pid_speed, pid_steer;
-  // TODO: Initialize the pid variable.
+  // TODO: Initialize the pid variable based on trial and error.
   pid_steer.Init(0.15, 0.001, 1.5);
   pid_speed.Init(0.15, 0.001, 1.5);
 
