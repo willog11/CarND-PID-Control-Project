@@ -32,12 +32,16 @@ void PID::UpdateError(double cte) {
 	i_error += cte;
 	p_error = cte;
 
-	//Twiddle(cte);
+#ifdef USE_TWIDDLE
+	Twiddle(cte);
+#endif
 }
 
 double PID::TotalError() {
 	return -Kp * p_error - Ki * i_error - Kd * d_error;
 }
+
+#ifdef USE_TWIDDLE
 
 void PID::Twiddle(double cte, double tol) {
 	double dp[3] = { 1.0, 1.0, 1.0 };
@@ -112,3 +116,5 @@ void PID::UpdateTau(int index, double value) {
 		Kd += value;
 
 }
+
+#endif
