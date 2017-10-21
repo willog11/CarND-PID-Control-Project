@@ -22,9 +22,11 @@ void PID::Init(double Kp, double Ki, double Kd) {
 	i_error = 0;
 	d_error = 0;
 
+#ifdef USE_TWIDDLE
 	best_error = std::numeric_limits<double>::max();
 	total_error = 0.0;
 	current_state = 0;
+#endif
 }
 
 void PID::UpdateError(double cte) {
