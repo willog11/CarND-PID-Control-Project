@@ -34,8 +34,8 @@ int main()
 
   PID pid_speed, pid_steer;
   // TODO: Initialize the pid variable.
-  pid_steer.Init(0.134611, 0.000270736, 3.05349);
-  pid_speed.Init(0.316731, 0.0000, 0.0226185);
+  pid_steer.Init(0.15, 0.001, 1.5);
+  pid_speed.Init(0.15, 0.001, 1.5);
 
   double target_speed = 45.0;
 
