@@ -37,7 +37,7 @@ int main()
   pid_steer.Init(0.134611, 0.000270736, 3.05349);
   pid_speed.Init(0.316731, 0.0000, 0.0226185);
 
-  double target_speed = 30.0;
+  double target_speed = 60.0;
 
   h.onMessage([&pid_steer, &pid_speed, &target_speed](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
