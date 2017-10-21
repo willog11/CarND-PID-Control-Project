@@ -1,6 +1,7 @@
 #include "PID.h"
 #include <limits>
 #include <math.h> 
+#include <iostream>
 
 using namespace std;
 
@@ -34,6 +35,7 @@ void PID::UpdateError(double cte) {
 
 #ifdef USE_TWIDDLE
 	Twiddle(cte);
+	cout << "Kp: " << Kp << " Ki: " << Ki << " Kd: " << Kd << endl;
 #endif
 }
 

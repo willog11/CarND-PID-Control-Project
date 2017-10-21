@@ -72,12 +72,12 @@ int main()
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
 
 		  //Update Speed
-		  pid_speed.UpdateError(cte);
-		  throttle = 0.75 - pid_speed.TotalError();
+		  //pid_speed.UpdateError(cte);
+		  //throttle = 0.75 - pid_speed.TotalError();
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
-          msgJson["throttle"] = throttle;
+          msgJson["throttle"] = 0.3;
           auto msg = "42[\"steer\"," + msgJson.dump() + "]";
           std::cout << msg << std::endl;
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
