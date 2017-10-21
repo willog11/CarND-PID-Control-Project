@@ -31,6 +31,7 @@ void PID::Init(double Kp, double Ki, double Kd) {
 
 void PID::UpdateError(double cte) {
 
+	// Update PID errors
 	d_error = cte - p_error;
 	i_error += cte;
 	p_error = cte;
@@ -42,6 +43,7 @@ void PID::UpdateError(double cte) {
 }
 
 double PID::TotalError() {
+	// Calculate PID value
 	return -Kp * p_error - Ki * i_error - Kd * d_error;
 }
 
@@ -118,7 +120,6 @@ void PID::UpdateTau(int index, double value) {
 
 	if (index == 2)
 		Kd += value;
-
 }
 
 #endif

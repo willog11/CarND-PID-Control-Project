@@ -58,9 +58,19 @@ public:
 private:
 
 #ifdef USE_TWIDDLE
+	/*
+	* Calculate the sum of the array.
+	*/
 	double SumArray(double* p);
+
+	/*
+	* Update the tau values according to their index.
+	*/
 	void UpdateTau(int index, double value);
 
+	/*
+	* Twiddle variables.
+	*/
 	double best_error;
 	double total_error;
 	int current_state;
