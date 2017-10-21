@@ -1,7 +1,9 @@
 #ifndef PID_H
 #define PID_H
 
-#define USE_TWIDDLE FALSE
+#if 0
+	#define USE_TWIDDLE
+#endif
 
 class PID {
 public:
