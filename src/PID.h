@@ -1,10 +1,6 @@
 #ifndef PID_H
 #define PID_H
 
-#if 0
-	#define USE_TWIDDLE
-#endif
-
 class PID {
 public:
 	/*
@@ -34,7 +30,7 @@ public:
 	/*
 	* Initialize PID.
 	*/
-	void Init(double Kp, double Ki, double Kd);
+	void Init(double Kp, double Ki, double Kd, bool twiddle_enabled = false);
 
 	/*
 	* Update the PID error variables given cross track error.
@@ -47,17 +43,14 @@ public:
 	*/
 	double TotalError();
 
-
-#ifdef USE_TWIDDLE
 	/*
 	* Use twiddle implementation to update tau variables.
 	*/
 	void Twiddle(double cte, double tol = 0.2);
-#endif
 
 private:
 
-#ifdef USE_TWIDDLE
+
 	/*
 	* Calculate the sum of the array.
 	*/
@@ -74,7 +67,10 @@ private:
 	double best_error;
 	double total_error;
 	int current_state;
-#endif
+	int twiddle_index;
+	bool twiddle_enabled;
+	double dp[3];
+
 
 };
 
