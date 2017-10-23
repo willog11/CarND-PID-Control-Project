@@ -55,50 +55,48 @@ double PID::TotalError() {
 void PID::Twiddle(double cte, double tol) {
 	total_error += pow(cte, 2);
 
-	if (dp[twiddle_index] > tol)
+	switch (current_state)
 	{
-		switch (current_state)
-		{
-			case 0:
-				UpdateTau(twiddle_index, dp[twiddle_index]);
-				current_state = 1;
+		case 0:
+			UpdateTau(twiddle_index, dp[twiddle_index]);
+			current_state = 1;
+			break;
+		case 1:
+			if (total_error < best_error)
+			{
+				// Improvement made
+				best_error = total_error;
+				dp[twiddle_index] *= 1.1;
+				current_state = 0;
 				break;
-			case 1:
+			}
+			else
+			{
+				// No improvement - subtract
+				double update_factor = (-2 * dp[twiddle_index]);
+				UpdateTau(twiddle_index, update_factor);
+				current_state = 2;
+				break;
+			}
+		case 2:
 				if (total_error < best_error)
 				{
 					// Improvement made
 					best_error = total_error;
 					dp[twiddle_index] *= 1.1;
-					current_state = 0;
-					break;
 				}
 				else
 				{
-					// No improvement - subtract
-					double update_factor = (-2 * dp[twiddle_index]);
-					UpdateTau(twiddle_index, update_factor);
-					current_state = 2;
-					break;
+					// No improvement - add back
+					UpdateTau(twiddle_index, dp[twiddle_index]);
+					dp[twiddle_index] *= 0.9;
 				}
-			case 2:
-					if (total_error < best_error)
-					{
-						// Improvement made
-						best_error = total_error;
-						dp[twiddle_index] *= 1.1;
-					}
-					else
-					{
-						// No improvement - add back
-						UpdateTau(twiddle_index, dp[twiddle_index]);
-						dp[twiddle_index] *= 0.9;
-					}
-					current_state = 0;
-					break;
-			default:
+				current_state = 0;
 				break;
-		}
+		default:
+			break;
 	}
+	
 
 }
 
