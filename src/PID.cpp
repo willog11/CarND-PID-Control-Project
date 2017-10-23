@@ -56,7 +56,7 @@ double PID::TotalError() {
 
 void PID::Twiddle(double cte, double tol) {
 
-	if (steps > eval_steps)
+	if (steps > eval_steps || steps == 0)
 	{
 		total_error += pow(cte, 2);
 		steps = 0;
@@ -76,7 +76,6 @@ void PID::Twiddle(double cte, double tol) {
 				best_error = total_error;
 				dp[twiddle_index] *= 1.1;
 				current_state = 0;
-				break;
 			}
 			else
 			{
@@ -84,8 +83,8 @@ void PID::Twiddle(double cte, double tol) {
 				double update_factor = (-2 * dp[twiddle_index]);
 				UpdateTau(twiddle_index, update_factor);
 				current_state = 2;
-				break;
 			}
+			break;
 		case 2:
 				if (total_error < best_error)
 				{
@@ -107,7 +106,7 @@ void PID::Twiddle(double cte, double tol) {
 
 	steps++;
 	
-	cout << "Twiddle::() Best error: " << best_error << "Total error: " << total_error << endl;
+	cout << "Twiddle::() Best error: " << best_error << " Total error: " << total_error << endl;
 
 }
 
