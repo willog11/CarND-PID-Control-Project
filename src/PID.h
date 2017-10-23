@@ -70,6 +70,8 @@ private:
 	int twiddle_index;
 	bool twiddle_enabled;
 	double dp[3];
+	int eval_steps;
+	int steps;
 
 
 };

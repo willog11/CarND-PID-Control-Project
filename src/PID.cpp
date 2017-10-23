@@ -31,7 +31,9 @@ void PID::Init(double Kp, double Ki, double Kd, bool twiddle_enabled) {
 	dp[1] = this->Ki * 0.1;
 	dp[2] = this->Kd * 0.1;
 
-	twiddle_index = 3; // Tau D
+	twiddle_index = 0; // Tau P
+	eval_steps = 100;
+	steps = 0;
 }
 
 void PID::UpdateError(double cte) {
@@ -53,7 +55,9 @@ double PID::TotalError() {
 
 
 void PID::Twiddle(double cte, double tol) {
-	total_error += pow(cte, 2);
+
+	if (steps % eval_steps >= eval_steps)
+		total_error += pow(cte, 2);
 
 	switch (current_state)
 	{
@@ -96,6 +100,8 @@ void PID::Twiddle(double cte, double tol) {
 		default:
 			break;
 	}
+
+	step++;
 	
 	cout << "Twiddle::() Best error: " << best_error << "Total error: " << total_error << endl;
 
