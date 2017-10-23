@@ -31,8 +31,7 @@ void PID::Init(double Kp, double Ki, double Kd, bool twiddle_enabled) {
 	dp[1] = this->Ki * 0.1;
 	dp[2] = this->Kd * 0.1;
 
-	twiddle_index = 0 // Tau P
-
+	twiddle_index = 0; // Tau P
 }
 
 void PID::UpdateError(double cte) {
