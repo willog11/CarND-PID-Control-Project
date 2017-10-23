@@ -34,7 +34,7 @@ int main()
 
   PID pid_speed, pid_steer;
   // TODO: Initialize the pid variable based on trial and error.
-  pid_steer.Init(0.1815, 0.001, 1.65, true);
+  pid_steer.Init(0.1815, 0.001, 1.65, false);
   pid_speed.Init(0.15, 0.001, 1.5, false);
 
   double target_speed = 45.0;
@@ -74,7 +74,7 @@ int main()
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
 
 		  //Update Speed
-		  double speed_error = speed - target_speed;
+		  double speed_error = target_speed - speed;
 		  pid_speed.UpdateError(speed_error);
 		  throttle = pid_speed.TotalError();
 
