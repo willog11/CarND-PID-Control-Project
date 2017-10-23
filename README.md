@@ -3,6 +3,31 @@ Self-Driving Car Engineer Nanodegree Program
 
 ---
 
+## Introduction
+
+The purpose of the project was to implement a PID (Proportional, Integral and Differential) controller and tune it so that the vehicle drives safely around the track. The simulator provides cross-track error (CTE), speed and steering angle data to help provide this functionality.
+
+## Rubric Tasks
+
+### Describe the PID components
+
+The Proportional component controls how much the vehicle will respond to the CTE. If this value is too high then the vehicle will oscillate uncontrollably but if its too low then the vehicle will never converge to a CTE of 0.
+
+The Differential component counteracts the effects of P components to oscillate and overshoot. It should be tuned to allow for smooth driving. If its set too low then the vehicle will overshoot for a while. If its too high it will take a long time to converge to a CTE of 0.
+
+The Integral component counteracts biases in the system. In real world driving scenarios this would be caused by the alignment of the wheels for example. In the case of this project, it helps reduce the impact of the majority of the course having left hand turns.
+
+### How were the PID coefficients parameterized
+
+The process for parameterisation was straight forward:
+
+1. First the parameters were selected manually to give an OK performance when the throttle was fixed.
+2. Once a decent set were found which allowed for the vehicle to drive around the track a PID was created to control the speed. A max speed was decided upon to ensure the vehicle would never drive off the track. Point 1 was then repeated for the speed PID
+3. A Twiddle algorithm was implemented to control each co-efficient on seperate runs. This was to allow for only one variable and the rest of the coefficents to be controlled.
+4. Finally the parameters were tweaked manually to try and improve any weak areas. This also allowed to get a more hands on approach and in return understand more from the PID controller.
+
+---
+
 ## Dependencies
 
 * cmake >= 3.5
