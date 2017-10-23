@@ -56,8 +56,12 @@ double PID::TotalError() {
 
 void PID::Twiddle(double cte, double tol) {
 
-	if (steps % eval_steps >= eval_steps)
+	if (steps > eval_steps)
+	{
 		total_error += pow(cte, 2);
+		steps = 0;
+	}
+		
 
 	switch (current_state)
 	{
