@@ -26,6 +26,11 @@ The process for parameterisation was straight forward:
 3. A Twiddle algorithm was implemented to control each co-efficient on seperate runs. This was to allow for only one variable and the rest of the coefficents to be controlled.
 4. Finally the parameters were tweaked manually to try and improve any weak areas. This also allowed to get a more hands on approach and in return understand more from the PID controller.
 
+### Demo recording
+
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/O9N4XLl-E_o/0.jpg)](https://www.youtube.com/watch?v=O9N4XLl-E_o)
+
+
 ---
 
 ## Dependencies
