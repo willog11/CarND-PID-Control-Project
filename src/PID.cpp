@@ -101,7 +101,7 @@ void PID::Twiddle(double cte, double tol) {
 			break;
 	}
 
-	step++;
+	steps++;
 	
 	cout << "Twiddle::() Best error: " << best_error << "Total error: " << total_error << endl;
 
