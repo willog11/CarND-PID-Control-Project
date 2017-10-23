@@ -74,7 +74,7 @@ int main()
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
 
 		  //Update Speed
-		  double speed_error = target_speed - speed;
+		  double speed_error = speed - target_speed;
 		  pid_speed.UpdateError(speed_error);
 		  throttle = pid_speed.TotalError();
 
