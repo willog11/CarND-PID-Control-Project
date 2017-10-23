@@ -34,12 +34,13 @@ int main()
 
   PID pid_speed, pid_steer;
   // TODO: Initialize the pid variable based on trial and error.
-  pid_steer.Init(0.165, 0.001, 4.05, false);
+  pid_steer.Init(0.165, 0.001, 3.05, false);
   pid_speed.Init(0.15, 0.0, 0.02, false);
 
   double target_speed = 45.0;
+  double steering_prev = 0.0;
 
-  h.onMessage([&pid_steer, &pid_speed, &target_speed](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
+  h.onMessage([&pid_steer, &pid_speed, &target_speed, &steering_prev](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
     // The 4 signifies a websocket message
     // The 2 signifies a websocket event
@@ -65,6 +66,8 @@ int main()
 		  //Update Steering
 		  pid_steer.UpdateError(cte);
 		  steer_value = pid_steer.TotalError();
+		  steer_value = 0.7 * steer_value + 0.3 * steering_prev;
+		  steering_prev = steer_value;
 
 		  if (steer_value < -1)
 			  steer_value = -1;
